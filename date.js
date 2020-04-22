@@ -32,7 +32,14 @@
  */
 function getDayOfTheWeek(date) {
     // Your Code Here!
-    return "";
+
+    let indexedWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+
+    let inputDate = new Date(date);
+
+    let dayOfTheWeek = inputDate.getDay();
+
+    return indexedWeek[dayOfTheWeek];
 }
 
 
@@ -80,7 +87,30 @@ function getFormattedDate(date) {
     let month = date.getMonth();
     // etc...
     // Your Code Here!
-    return `${month}/ etc...`;
+
+    let day = date.getDate();
+
+    let year = date.getFullYear() - 2000;
+
+    let hour = date.getHours();
+
+    let minute = date.getMinutes();
+
+    let amOrPm;
+        if (hour < 12) {
+            amOrPm = "am";
+        } else {
+            amOrPm = "pm";
+        }
+
+        if (hour === 0) {
+            hour = 12;
+        } else if (hour > 12) {
+            hour = hour - 12;
+        }
+
+
+    return `${month}/${day}/${year} - ${hour}:${minute}${amOrPm}`;
 }
 
 
@@ -114,7 +144,26 @@ function getFormattedDate(date) {
  */
 function getDaysAgoString(date) {
     // Your Code Here!
-    return "";
+
+    let rightNow = new Date();
+
+    let timeDiff = rightNow - date;
+
+    let timeDiffDays = Math.floor(timeDiff/86400000);
+
+    let daysAgo;
+
+    //86,400,000 milliseconds in one day
+
+    if (timeDiff < 86400000) {
+        daysAgo = "Today";
+    } else if (timeDiff < 86400000 * 2) {
+        daysAgo = "Yesterday";
+    } else if (timeDiff > 86400000 * 2) {
+        daysAgo = `${timeDiffDays} days ago`;
+    }
+
+    return daysAgo;
 }
 
 
